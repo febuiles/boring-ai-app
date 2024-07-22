@@ -6,6 +6,7 @@ module Edgar
     url = "https://data.sec.gov/submissions/CIK#{padded_cik}.json"
     response = Faraday.get(url, nil, headers)
 
+    # TODO clean up this mess
     json = JSON.parse(response.body)
     filings = json["filings"]["recent"]
     filings["form"].each.with_index do |filing, i|
@@ -21,9 +22,7 @@ module Edgar
         end
         rep_res = connection.get(rep_url, nil, headers)
         if rep_res.success?
-          File.open('rep.html', 'w') do |f|
-            f.write(rep_res.body)
-          end
+          Report.create_from_file(cik, rep_res.body)
         else
           raise "Could not process url: #{rep_url}"
         end

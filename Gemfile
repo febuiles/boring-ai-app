@@ -62,10 +62,8 @@ group :development do
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
 end
 
-group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
+group :production do
+  gem "aws-sdk-s3", require: false
 end
 
 gem "tailwindcss-rails", "~> 2.6"
