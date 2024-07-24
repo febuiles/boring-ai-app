@@ -56,7 +56,7 @@ openapi-schema-pydantic==1.2.4
 opt-einsum==3.3.0
 overrides==7.4.0
 packaging==23.1
-Pillow==10.0.0
+Pillow==10.3.0
 posthog==3.0.1
 protobuf
 pulsar-client==3.2.0
