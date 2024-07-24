@@ -20,7 +20,7 @@ click==8.1.6
 coloredlogs==15.0.1
 cryptography==42.0.4
 dataclasses-json==0.5.14
-fastapi==0.99.1
+fastapi==0.109.1
 filetype==1.2.0
 frozenlist==1.4.0
 gast==0.4.0
