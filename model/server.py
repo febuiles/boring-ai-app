@@ -32,7 +32,8 @@ async def generate_text(req: GenerateRequest):
 
         template = """Use the following pieces of context to answer the question at the end.
         If you don't know the answer, just say that you don't know, don't try to make up an answer.
-        Make Use three sentences maximum and keep the answer as concise as possible.
+        Use three sentences maximum and keep the answer as concise as possible.
+        Don't say "according to the context" or similar in your answers
         {context}
         Question: {question}
         Helpful Answer:"""
@@ -48,8 +49,15 @@ async def generate_text(req: GenerateRequest):
             chain_type_kwargs={"prompt": QA_CHAIN_PROMPT},
         )
 
-        result = qa_chain({"query": "What was the gross margin?"})
+        results = {}
+        results["total_revenue"] = qa_chain({"query": "What was the total revenue?"})
+        results["gross_margin"] = qa_chain({"query": "What was the gross margin?"})
+        results["net_income"] = qa_chain({"query": "What was the net income?"})
+        results["op_ex"] = qa_chain({"query": "What were the operational expenses?"})
+        results["op_inc"] = qa_chain({"query": "What was the operational income?"})
+        results["taxes"] = qa_chain({"query": "How much money went to taxes?"})
+        results["fcf"] = qa_chain({"query": "What can you tell me about the cashflow?"})
 
-        return result
+        return results
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
