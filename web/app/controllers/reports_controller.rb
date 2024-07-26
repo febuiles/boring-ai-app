@@ -24,9 +24,23 @@ class ReportsController < ApplicationController
   end
 
   def llama
-    source_url = 'https://www.sec.gov/Archives/edgar/data/0000320193/000032019322000108/aapl-20220924.htm'
-    @response = ModelsClient.generate(source_url)
-    render turbo_stream: turbo_stream.replace('llama', partial: 'reports/llama')
+    source_url = Edgar.last_submission(params["cik"])
+    begin
+      @response = ModelsClient.generate(model: "llama", source: source_url)
+      render turbo_stream: turbo_stream.replace('llama', partial: 'reports/llama')
+    rescue Faraday::TimeoutError
+      render turbo_stream: turbo_stream.replace('llama', "Failed to load Llama")
+    end
+  end
+
+  def phi
+    source_url = Edgar.last_submission(params["cik"])
+    begin
+      @response = ModelsClient.generate(model: "phi", source: source_url)
+      render turbo_stream: turbo_stream.replace('phi', partial: 'reports/phi')
+    rescue Faraday::TimeoutError
+      render turbo_stream: turbo_stream.replace('llama', "Failed to load Phi")
+    end
   end
 
   def report_params

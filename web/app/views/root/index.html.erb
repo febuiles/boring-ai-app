@@ -3,7 +3,7 @@
 
   <%= form_with model: Report.new, local: true, class: "space-y-4" do |form| %>
     <div class="flex items-center">
-      <%= form.text_field :ticker, placeholder: "AAPL", class: "border border-gray-300 rounded-l-md shadow-sm", autofocus: true %>
+      <%= form.text_field :ticker, placeholder: "IBM", class: "border border-gray-300 rounded-l-md shadow-sm", autofocus: true %>
       <%= form.submit "Search", class: "ml-2 px-4 py-2 border border-transparent rounded-r-md shadow-sm text-sm font-medium text-white bg-blue-900" %>
     </div>
 <% end %>

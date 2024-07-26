@@ -18,12 +18,13 @@
     </div>
 
     <div class="w-1/3">
-      <h3 class="text-2xl font-bold mb-4"><mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Llama 3</mark></h3>
-      <turbo-frame id="llama" src="<%= reports_llama_path %>">Loading...</turbo-frame>
+      <h3 class="text-2xl font-bold mb-4"><mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Llama</mark></h3>
+      <turbo-frame id="llama" src="<%= reports_llama_path(cik: @company.cik) %>">Loading...</turbo-frame>
     </div>
 
-    <div class="w-1/3" id="phi3">
-      <h3 class="text-2xl font-bold mb-4"><mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Phi 3</mark></h3>
+    <div class="w-1/3">
+      <h3 class="text-2xl font-bold mb-4"><mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Phi</mark></h3>
+      <turbo-frame id="phi" src="<%= reports_phi_path(cik: @company.cik) %>">Loading...</turbo-frame>
     </div>
   </div>
 </div>

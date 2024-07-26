@@ -42,7 +42,7 @@ async def generate_text(req: GenerateRequest):
             template=template,
         )
 
-        llm = Ollama(model="llama3")
+        llm = Ollama(model="llama2:7b")
         qa_chain = RetrievalQA.from_chain_type(
             llm,
             retriever=vectorstore.as_retriever(),

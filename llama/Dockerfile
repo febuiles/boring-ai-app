@@ -6,9 +6,9 @@ ENV OLLAMA_HOST "0.0.0.0"
 # store models in a volume, see fly.toml
 ENV OLLAMA_MODELS "/root/.ollama"
 
-# install ollama and download llama3
+# install ollama and download llama2:7b
 RUN curl -sSL https://ollama.com/install.sh | bash
-RUN bash -c "ollama serve > /dev/null 2>&1 & until curl -s http://localhost:11434 > /dev/null; do echo 'Waiting for ollama...'; sleep 1; done && ollama pull llama3"
+RUN bash -c "ollama serve > /dev/null 2>&1 & until curl -s http://localhost:11434 > /dev/null; do echo 'Waiting for ollama...'; sleep 1; done && ollama pull llama2:7b"
 
 WORKDIR /app
 

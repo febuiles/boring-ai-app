@@ -84,7 +84,6 @@ tenacity==8.2.2
 tensorboard
 tensorboard-data-server
 tensorflow==2.16.2
-tensorflow-macos==2.16.2
 termcolor==2.3.0
 tokenizers==0.13.3
 tqdm==4.66.3
