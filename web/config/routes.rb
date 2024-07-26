@@ -7,4 +7,8 @@ Rails.application.routes.draw do
 
   root "root#index"
   resource :reports
+
+  get "reports/gpt", to: "reports#gpt"
+  get "reports/llama", to: "reports#llama"
+  get "reports/phi", to: "reports#phi"
 end

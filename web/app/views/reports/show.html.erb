@@ -1,30 +1,29 @@
-<section class="bg-blue-900 text-white py-20">
-  <div class="container mx-auto px-6">
-    <h1 class="text-4xl md:text-6xl font-bold mb-4">breakmybank</h1>
-    <p class="text-lg md:text-xl">
-      breakmybank parses 10-K/20-F statements and gives you an overview of the reports.
-    </p>
-  </div>
-</section>
-
 <div class="container mx-auto px-6 py-10">
   Enter a valid SEC ticker:
 
   <%= form_with model: Report.new, local: true, class: "space-y-4" do |form| %>
-    <div class="flex items-center">
-      <%= form.text_field :ticker, placeholder: "AAPL", class: "border border-gray-300 rounded-l-md shadow-sm", autofocus: true %>
-      <%= form.submit "Search", class: "ml-2 px-4 py-2 border border-transparent rounded-r-md shadow-sm text-sm font-medium text-white bg-blue-900" %>
-    </div>
+  <div class="flex items-center">
+    <%= form.text_field :ticker, placeholder: "AAPL", class: "border border-gray-300 rounded-l-md shadow-sm", autofocus: true %>
+    <%= form.submit "Search", class: "ml-2 px-4 py-2 border border-transparent rounded-r-md shadow-sm text-sm font-medium text-white bg-blue-900" %>
+  </div>
 <% end %>
 </div>
 
 <div class="container mx-auto px-6">
   <h2 class="text-2xl md:text-3xl font-bold mb-4"><%= @company.name %></h2>
-  <p><strong>Total revenue</strong>: <%= (rand * 100).to_i  %></p>
-  <p><strong>Gross profit</strong>: <%= (rand * 100).to_i  %></p>
-  <p><strong>Net income</strong>: <%= (rand * 100).to_i  %></p>
-  <p><strong>Operational expenses</strong>: <%= (rand * 100).to_i  %></p>
-  <p><strong>Operational income</strong>: <%= (rand * 100).to_i  %></p>
-  <p><strong>Taxes</strong>: <%= (rand * 100).to_i  %></p>
-  <p><strong>Free Cash Flow (FCF)</strong>: <%= (rand * 100).to_i  %></p>
+  <div class="flex flex-row mx-auto">
+    <div class="w-1/3 pr-6">
+      <h3 class="text-2xl font-bold mb-4"><mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">ChatGPT</mark></h3>
+      <turbo-frame id="openai" src="<%= reports_gpt_path %>">Loading...</turbo-frame>
+    </div>
+
+    <div class="w-1/3">
+      <h3 class="text-2xl font-bold mb-4"><mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Llama 3</mark></h3>
+      <turbo-frame id="llama" src="<%= reports_llama_path %>">Loading...</turbo-frame>
+    </div>
+
+    <div class="w-1/3" id="phi3">
+      <h3 class="text-2xl font-bold mb-4"><mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">Phi 3</mark></h3>
+    </div>
+  </div>
 </div>
